@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   const [goals, setGoals] = useState([]);
-  const [editingGoal, setEditingGoal] = useState(null);
+  const [editingGoal, setEditingGoal] = useState(null);  
 
 useEffect(() => {
   
