@@ -33,15 +33,24 @@ useEffect(() => {
     setGoals(goals.filter(goal => goal.id !== id));
   };
 
-  const addProgress = (goalId, amount) => {
-    setGoals(goals.map(goal => {
-      if (goal.id === goalId) {
-        const newCurrent = Math.min(goal.current + Number(amount), goal.target);
-        return { ...goal, current: newCurrent };
-      }
-      return goal;
-    }));
-  };
+const addProgress = (goalId, amount) => {
+  setGoals(goals.map(goal => {
+    if (goal.id === goalId) {
+      const newCurrent = Math.min(goal.current + Number(amount), goal.target);
+      const progressHistory = [...(goal.progressHistory || []), {
+        date: new Date().toISOString().split('T')[0],
+        amount: Number(amount)
+      }];
+      
+      return { 
+        ...goal, 
+        current: newCurrent,
+        progressHistory 
+      };
+    }
+    return goal;
+  }));
+};
 
   return (
     <div className="container">

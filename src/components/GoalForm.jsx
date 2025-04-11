@@ -25,6 +25,8 @@ export default function GoalForm({ addGoal, updateGoal, editingGoal }) {
     setTitle('');
     setTarget('');
   };
+const [type, setType] = useState('steps');
+
 
   return (
     <form onSubmit={handleSubmit} className="goal-form">
@@ -41,6 +43,11 @@ export default function GoalForm({ addGoal, updateGoal, editingGoal }) {
         value={target}
         onChange={(e) => setTarget(e.target.value)}
       />
+        <select value={type} onChange={(e) => setType(e.target.value)}>
+                  <option value="steps">Steps</option>
+                  <option value="water">Water (glasses)</option>
+                 <option value="workouts">Workouts</option>
+        </select>
       <button type="submit">
         {editingGoal ? 'Update Goal' : 'Add Goal'}
       </button>
